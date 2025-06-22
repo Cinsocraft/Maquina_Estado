@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://klwa5nxufei0"]
+
+[ext_resource type="Texture2D" uid="uid://ob7rbpoe8yi8" path="res://kenney_scribble-platformer/PNG/Retina/ui_circle.png" id="1_4kv35"]
+[ext_resource type="Script" uid="uid://0hxjc6r58id8" path="res://Assets/enemy.gd" id="1_xby7n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xby7n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kv35"]
+size = Vector2(100, 100)
+
+[node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_xby7n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_4kv35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 45)
+scale = Vector2(2.5, 0.5)
+shape = SubResource("RectangleShape2D_xby7n")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4kv35")
+
+[node name="LeftRay" type="RayCast2D" parent="."]
+position = Vector2(-55, 50)
+target_position = Vector2(0, 5)
+hit_from_inside = true
+
+[node name="LeftRayWall" type="RayCast2D" parent="."]
+position = Vector2(-50, 0)
+rotation = 1.5708
+target_position = Vector2(0, 5)
+
+[node name="RightRayWall" type="RayCast2D" parent="."]
+position = Vector2(50, 0)
+rotation = -1.5708
+target_position = Vector2(0, 5)
+
+[node name="RightRay" type="RayCast2D" parent="."]
+position = Vector2(55, 50)
+target_position = Vector2(0, 5)
+hit_from_inside = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

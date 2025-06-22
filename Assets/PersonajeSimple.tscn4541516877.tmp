@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://x5ycmkupdp2n"]
+
+[ext_resource type="Script" uid="uid://dgs7elrn828he" path="res://Scritps/SimpleMachine.gd" id="1_lb1kj"]
+[ext_resource type="Texture2D" uid="uid://0n56ntaimlqr" path="res://kenney_scribble-platformer/PNG/Default/character_roundYellow.png" id="1_nhi5a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wppu"]
+size = Vector2(20, 60)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_lb1kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nhi5a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_6wppu")
+
+[node name="Camera2D" type="Camera2D" parent="."]

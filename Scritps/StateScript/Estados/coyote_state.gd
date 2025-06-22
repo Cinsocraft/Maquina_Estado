@@ -17,6 +17,9 @@ func 	on_physics_process(delta):
 			controlled_node.coyote_timer.start()
 			player.movement_stats.coyote_time_actived=true
 	
+	if controlled_node.coyote_timer.is_stopped():
+		state_machine.change_to(player.states.Fall)
+		
 	handle_gravity(delta)
 	controlled_node.move_and_slide()
 	

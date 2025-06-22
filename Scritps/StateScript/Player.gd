@@ -7,7 +7,6 @@ var states:PlayerStateNames = PlayerStateNames.new()
 
 @onready var coyote_timer: Timer = $"Coyote Timer"
 @onready var jumper_buffer: Timer = $"Jumper Buffer"
-
 @onready var body: Node2D = $body
 
 func set_facing_direction(x:float) -> void:

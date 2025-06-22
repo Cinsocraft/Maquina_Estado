@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://klwa5nxufei0"]
 
 [ext_resource type="Texture2D" uid="uid://ob7rbpoe8yi8" path="res://kenney_scribble-platformer/PNG/Retina/ui_circle.png" id="1_4kv35"]
-[ext_resource type="Script" uid="uid://0hxjc6r58id8" path="res://Assets/enemy.gd" id="1_xby7n"]
+[ext_resource type="Script" uid="uid://0hxjc6r58id8" path="res://Scritps/enemy.gd" id="1_xby7n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xby7n"]
 

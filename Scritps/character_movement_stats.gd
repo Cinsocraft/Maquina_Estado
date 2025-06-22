@@ -12,9 +12,12 @@ class_name CharacterMovementStats
 
 
 #region Gestión de movimiento vertical
-@export var jump_speed:float = -400
+@export var jump_speed:float = -500
 
 @export var coyote_time_actived = false
+@export var was_on_floor = true
+
+
 
 #Doble Jump
 

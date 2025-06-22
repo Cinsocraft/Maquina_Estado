@@ -11,4 +11,3 @@ func 	on_physics_process(delta):
 	
 	handle_gravity(delta)
 	controlled_node.move_and_slide()
-	

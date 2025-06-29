@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://x5ycmkupdp2n"]
+[gd_scene load_steps=13 format=3 uid="uid://x5ycmkupdp2n"]
 
 [ext_resource type="Texture2D" uid="uid://0n56ntaimlqr" path="res://kenney_scribble-platformer/PNG/Default/character_roundYellow.png" id="1_nhi5a"]
 [ext_resource type="Script" uid="uid://bg0ludbwq8aum" path="res://Scritps/StateScript/Player.gd" id="1_wl586"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ba2cjrehf4fvc" path="res://Scritps/StateScript/Estados/jump_state.gd" id="7_5pq2n"]
 [ext_resource type="Script" uid="uid://bo87ouky3jfkh" path="res://Scritps/StateScript/Estados/fall_state.gd" id="8_j0yqh"]
 [ext_resource type="Script" uid="uid://dcomnvrmvd1gk" path="res://Scritps/StateScript/Estados/coyote_state.gd" id="9_sivoe"]
+[ext_resource type="Script" uid="uid://cb8e8avgvond0" path="res://Assets/buffer_state.gd" id="10_xsjsp"]
 
 [sub_resource type="Resource" id="Resource_5pq2n"]
 script = ExtResource("2_b1e43")
@@ -60,9 +61,17 @@ script = ExtResource("8_j0yqh")
 [node name="Coyote_State" type="Node" parent="StateMachine"]
 script = ExtResource("9_sivoe")
 
+[node name="Buffer_State" type="Node" parent="StateMachine"]
+script = ExtResource("10_xsjsp")
+
 [node name="Coyote Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="Jumper Buffer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.8
 one_shot = true
+
+[node name="Buffer_Control" type="RayCast2D" parent="."]
+position = Vector2(0, 24)
+target_position = Vector2(0, 100)
+collision_mask = 7

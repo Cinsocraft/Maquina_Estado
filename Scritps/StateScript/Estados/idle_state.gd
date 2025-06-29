@@ -13,7 +13,9 @@ func 	on_physics_process(delta):
 	controlled_node.move_and_slide()
 
 func on_input(_event):
-		if Input.get_action_strength("left") or Input.get_action_strength("right"):
-			state_machine.change_to(player.states.Move)
-		elif Input.is_action_just_pressed("jump"):
+	if Input.get_action_strength("left") or Input.get_action_strength("right"):
+		state_machine.change_to(player.states.Move)
+	elif Input.is_action_just_pressed("jump"):
 			state_machine.change_to(player.states.Jump)
+###
+###

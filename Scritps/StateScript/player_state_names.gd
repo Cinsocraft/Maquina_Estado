@@ -6,6 +6,7 @@ const Move:String = "Move_State"
 const Fall:String = "Fall_State"
 const Jump:String = "Jump_State"
 const Coyote:String ="Coyote_State"
+const Buffer:String = "Buffer_State"
 
 
 #Estados de combate de un boss? creo

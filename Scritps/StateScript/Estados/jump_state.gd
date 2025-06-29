@@ -1,9 +1,9 @@
 extends PlayerStateGravityBase
 
 func 	on_physics_process(delta):
+	player.jumper_buffer.start()
 	player.velocity.x = \
 	Input.get_axis("left", "right") * player.movement_stats.move_speed
-	
 	# si esta en el suelo y esta parado sobre él, podemos darle impulso de salto
 	if controlled_node.is_on_floor() and controlled_node.velocity.y >= 0: 
 		controlled_node.velocity.y = controlled_node.movement_stats.jump_speed

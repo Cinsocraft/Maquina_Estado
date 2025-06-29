@@ -14,3 +14,6 @@ func on_input(_event):
 			state_machine.change_to(player.states.Idle)
 		if Input.is_action_just_pressed("jump"):
 			state_machine.change_to(player.states.Jump)
+###
+
+###

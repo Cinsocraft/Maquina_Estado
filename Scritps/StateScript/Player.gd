@@ -9,6 +9,7 @@ var states:PlayerStateNames = PlayerStateNames.new()
 @onready var jumper_buffer: Timer = $"Jumper Buffer"
 @onready var body: Node2D = $body
 @onready var buffer_control: RayCast2D = $Buffer_Control
+@onready var coyote_control: RayCast2D = $Coyote_Control
 
 func set_facing_direction(x:float) -> void:
 	if abs(x) > 0:

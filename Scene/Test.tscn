@@ -149,7 +149,7 @@ tile_map_data = PackedByteArray("AACJAEoAAwAAAAAAAACJAEsAAwAAAAEAAACJAEwAAwAAAAI
 tile_set = SubResource("TileSet_3wv3v")
 
 [node name="Player" parent="." instance=ExtResource("2_mypys")]
-position = Vector2(2141, 358)
+position = Vector2(2142, 373)
 
 [node name="Enemy" parent="." instance=ExtResource("3_3wv3v")]
 position = Vector2(623, 546)

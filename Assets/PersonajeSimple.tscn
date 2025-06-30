@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://x5ycmkupdp2n"]
+[gd_scene load_steps=14 format=3 uid="uid://x5ycmkupdp2n"]
 
 [ext_resource type="Texture2D" uid="uid://0n56ntaimlqr" path="res://kenney_scribble-platformer/PNG/Default/character_roundYellow.png" id="1_nhi5a"]
 [ext_resource type="Script" uid="uid://bg0ludbwq8aum" path="res://Scritps/StateScript/Player.gd" id="1_wl586"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bo87ouky3jfkh" path="res://Scritps/StateScript/Estados/fall_state.gd" id="8_j0yqh"]
 [ext_resource type="Script" uid="uid://dcomnvrmvd1gk" path="res://Scritps/StateScript/Estados/coyote_state.gd" id="9_sivoe"]
 [ext_resource type="Script" uid="uid://cb8e8avgvond0" path="res://Scritps/StateScript/Estados/buffer_state.gd" id="10_xsjsp"]
+[ext_resource type="Script" uid="uid://dab5076a42gm2" path="res://Assets/corner_state.gd" id="11_tspk4"]
 
 [sub_resource type="Resource" id="Resource_5pq2n"]
 script = ExtResource("2_b1e43")
@@ -22,8 +23,8 @@ was_on_floor = false
 metadata/_custom_type_script = "uid://cxgbg04oq4klp"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xsjsp"]
-radius = 5.0
-height = 15.5
+radius = 18.0
+height = 58.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 7
@@ -38,10 +39,23 @@ texture_filter = 1
 texture = ExtResource("1_nhi5a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 23.25)
 shape = SubResource("CapsuleShape2D_xsjsp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Corner_Right_Control" type="RayCast2D" parent="."]
+position = Vector2(20, 0)
+rotation = -3.14159
+collision_mask = 7
+
+[node name="Corner_Center_Control" type="RayCast2D" parent="."]
+rotation = 3.14159
+collision_mask = 7
+
+[node name="Corner_Left_Control" type="RayCast2D" parent="."]
+position = Vector2(-20, 0)
+rotation = -3.14159
+collision_mask = 7
 
 [node name="Buffer_Control" type="RayCast2D" parent="."]
 position = Vector2(0, 30)
@@ -76,6 +90,9 @@ script = ExtResource("9_sivoe")
 
 [node name="Buffer_State" type="Node" parent="StateMachine"]
 script = ExtResource("10_xsjsp")
+
+[node name="Corner_State" type="Node" parent="StateMachine"]
+script = ExtResource("11_tspk4")
 
 [node name="Coyote Timer" type="Timer" parent="."]
 wait_time = 10.0

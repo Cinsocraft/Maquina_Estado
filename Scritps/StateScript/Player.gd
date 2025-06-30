@@ -10,7 +10,11 @@ var states:PlayerStateNames = PlayerStateNames.new()
 @onready var body: Node2D = $body
 @onready var buffer_control: RayCast2D = $Buffer_Control
 @onready var coyote_control: RayCast2D = $Coyote_Control
-
+###
+@onready var corner_right_control: RayCast2D = $Corner_Right_Control
+@onready var corner_left_control: RayCast2D = $Corner_Left_Control
+@onready var corner_center_control: RayCast2D = $Corner_Center_Control
+###
 func set_facing_direction(x:float) -> void:
 	if abs(x) > 0:
 		body.scale.x = -1 if (x < 0) else 1

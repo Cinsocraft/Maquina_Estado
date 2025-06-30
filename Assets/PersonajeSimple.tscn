@@ -18,7 +18,7 @@ acceleration_speed = 500.0
 decceleration_speed = 500.0
 jump_speed = -500.0
 coyote_time_actived = false
-was_on_floor = true
+was_on_floor = false
 metadata/_custom_type_script = "uid://cxgbg04oq4klp"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xsjsp"]

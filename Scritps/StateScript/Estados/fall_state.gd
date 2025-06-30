@@ -1,10 +1,10 @@
 extends PlayerStateGravityBase
 
 
-func on_physics_process(delta):	
+func on_physics_process(delta):
 	player.velocity.x = \
 		Input.get_axis("left", "right") * player.movement_stats.move_speed
-	if player.buffer_control.get_collider() and !player.jumper_buffer.is_stopped() and !player.is_on_floor():
+	if !player.jumper_buffer.is_stopped():
 		state_machine.change_to(player.states.Buffer)
 	if player.velocity.y >= 0 and player.is_on_floor(): 
 			state_machine.change_to(player.states.Idle)

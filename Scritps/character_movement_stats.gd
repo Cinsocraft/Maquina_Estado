@@ -15,7 +15,7 @@ class_name CharacterMovementStats
 @export var jump_speed:float = -500
 
 @export var coyote_time_actived = false
-@export var was_on_floor = true
+@export var was_on_floor = false
 
 
 

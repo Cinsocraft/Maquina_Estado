@@ -8,6 +8,7 @@ const Jump:String = "Jump_State"
 const Coyote:String ="Coyote_State"
 const Buffer:String = "Buffer_State"
 const Corner:String = "Corner_State"
+const WallSlide:String = "WallSlide_State"
 
 
 #Estados de combate de un boss? creo

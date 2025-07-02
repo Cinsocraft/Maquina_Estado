@@ -13,7 +13,6 @@ var states:PlayerStateNames = PlayerStateNames.new()
 ###
 @onready var corner_right_control: RayCast2D = $Corner_Right_Control
 @onready var corner_left_control: RayCast2D = $Corner_Left_Control
-@onready var corner_center_control: RayCast2D = $Corner_Center_Control
 ###
 func set_facing_direction(x:float) -> void:
 	if abs(x) > 0:

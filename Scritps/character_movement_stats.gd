@@ -17,7 +17,9 @@ class_name CharacterMovementStats
 @export var coyote_time_actived = false
 @export var was_on_floor = false
 
+@export var correct_corner = 3
 
+@export var wall_slide_speed = 1200
 
 #Doble Jump
 

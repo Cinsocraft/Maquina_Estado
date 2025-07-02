@@ -15,7 +15,16 @@ func 	on_physics_process(delta):
 			state_machine.change_to(player.states.Move)
 		if player.jumper_buffer.is_stopped():
 			state_machine.change_to(player.states.Fall)
-
+	#region Corner Correction
+	if !player.is_on_wall():
+		if player.corner_left_control.is_colliding() and not player.corner_right_control.is_colliding():
+			player.position.x += controlled_node.movement_stats.correct_corner
+		elif !player.corner_left_control.is_colliding() and player.corner_right_control.is_colliding():
+			player.position.x -= controlled_node.movement_stats.correct_corner
+	#endregion
+	if player.is_on_wall():
+		state_machine.change_to(player.states.WallSlide)
+	
 	handle_gravity(delta)
 	controlled_node.move_and_slide()
 	###

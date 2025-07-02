@@ -23,6 +23,8 @@ func 	on_physics_process(delta):
 			state_machine.change_to(player.states.Idle)
 		elif Input.get_action_strength("left") or Input.get_action_strength("right"):
 			state_machine.change_to(player.states.Move)
+		elif player.is_on_wall():
+			state_machine.change_to(player.states.WallSlide)
 	#endregion
 	handle_gravity(delta)
 	controlled_node.move_and_slide()

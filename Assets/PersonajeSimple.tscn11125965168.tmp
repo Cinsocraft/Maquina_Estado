@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://bo87ouky3jfkh" path="res://Scritps/StateScript/Estados/fall_state.gd" id="8_j0yqh"]
 [ext_resource type="Script" uid="uid://dcomnvrmvd1gk" path="res://Scritps/StateScript/Estados/coyote_state.gd" id="9_sivoe"]
 [ext_resource type="Script" uid="uid://cb8e8avgvond0" path="res://Scritps/StateScript/Estados/buffer_state.gd" id="10_xsjsp"]
-[ext_resource type="Script" uid="uid://dkrgj174oc2sy" path="res://Scritps/StateScript/Estados/wall_jump_state.gd" id="12_mlthr"]
+[ext_resource type="Script" uid="uid://dkrgj174oc2sy" path="res://Assets/wall_jump_state.gd" id="12_mlthr"]
 [ext_resource type="Script" uid="uid://etm3cwipbqox" path="res://Scritps/StateScript/Estados/wall_slide_state.gd" id="12_o1f3h"]
 
 [sub_resource type="Resource" id="Resource_5pq2n"]
@@ -20,13 +20,11 @@ acceleration_speed = 500.0
 decceleration_speed = 500.0
 jump_speed = -500.0
 coyote_time_actived = false
-jump_wall_actived = false
-was_wall_R = false
-was_wall_L = false
+was_on_floor = false
 correct_corner = 3
-wall_slide_speed = 200.0
-wall_jumpV_force = -550.0
-wall_jumpH_force = -650.0
+wall_slide_speed = 1200.0
+wall_jumpV_force = -500.0
+wall_jumpH_force = 500.0
 wall_jumpHL_force = 500.0
 metadata/_custom_type_script = "uid://cxgbg04oq4klp"
 
@@ -36,7 +34,6 @@ height = 60.0
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 7
 collision_mask = 7
-safe_margin = 0.14
 script = ExtResource("1_wl586")
 movement_stats = SubResource("Resource_5pq2n")
 
@@ -88,6 +85,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="WallTimer" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [node name="Corner_Right_Control" type="RayCast2D" parent="."]
@@ -117,7 +115,7 @@ hit_from_inside = true
 
 [node name="Wall_ControllerR" type="RayCast2D" parent="."]
 position = Vector2(0, 30)
-target_position = Vector2(15, 0)
+target_position = Vector2(12, 0)
 collision_mask = 7
 hit_from_inside = true
 
@@ -125,20 +123,6 @@ hit_from_inside = true
 modulate = Color(1, 0, 1, 1)
 position = Vector2(0, 30)
 rotation = -3.14159
-target_position = Vector2(14, 0)
-collision_mask = 7
-hit_from_inside = true
-
-[node name="Wall_ControllerRc" type="RayCast2D" parent="."]
-position = Vector2(0, -40.965)
-target_position = Vector2(14, 0)
-collision_mask = 7
-hit_from_inside = true
-
-[node name="Wall_ControllerLc" type="RayCast2D" parent="."]
-modulate = Color(1, 0, 1, 1)
-position = Vector2(0, -40.965)
-rotation = -3.14159
-target_position = Vector2(14, 0)
+target_position = Vector2(12, 0)
 collision_mask = 7
 hit_from_inside = true

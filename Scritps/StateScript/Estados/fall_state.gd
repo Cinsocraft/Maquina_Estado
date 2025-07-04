@@ -10,7 +10,10 @@ func on_physics_process(delta):
 			state_machine.change_to(player.states.Idle)
 	if Input.get_axis("left", "right") and player.is_on_floor(): 
 			state_machine.change_to(player.states.Move)
-	if player.is_on_wall():
-		state_machine.change_to(player.states.WallSlide)
+	
+	if player.wall_controller_r.get_collider() and player.wall_controller_rc.get_collider():
+			state_machine.change_to(player.states.WallSlide)
+	elif player.wall_controller_l.get_collider() and player.wall_controller_lc.get_collider():
+			state_machine.change_to(player.states.WallSlide)
 	handle_gravity(delta)
 	controlled_node.move_and_slide()

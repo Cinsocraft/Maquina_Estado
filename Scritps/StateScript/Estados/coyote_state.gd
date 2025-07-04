@@ -3,6 +3,7 @@ extends PlayerStateGravityBase
 #coyote_timer
 #coyote_time_actived
 
+
 func 	on_physics_process(delta):
 	player.velocity.x = \
 	Input.get_axis("left", "right") * player.movement_stats.move_speed
@@ -12,6 +13,7 @@ func 	on_physics_process(delta):
 		if player.movement_stats.coyote_time_actived:
 			player.movement_stats.coyote_time_actived=false
 			controlled_node.coyote_timer.stop()
+			state_machine.change_to(player.states.Fall)
 	else:
 		if player.movement_stats.coyote_time_actived:
 			controlled_node.coyote_timer.start()
@@ -23,7 +25,9 @@ func 	on_physics_process(delta):
 			state_machine.change_to(player.states.Idle)
 		elif Input.get_action_strength("left") or Input.get_action_strength("right"):
 			state_machine.change_to(player.states.Move)
-		elif player.is_on_wall():
+	if player.wall_controller_r.get_collider() and player.wall_controller_rc.get_collider():
+			state_machine.change_to(player.states.WallSlide)
+	elif player.wall_controller_l.get_collider() and player.wall_controller_lc.get_collider():
 			state_machine.change_to(player.states.WallSlide)
 	#endregion
 	handle_gravity(delta)

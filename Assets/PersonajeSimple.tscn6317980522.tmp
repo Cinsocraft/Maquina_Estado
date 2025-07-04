@@ -24,8 +24,9 @@ jump_wall_actived = false
 was_wall_R = false
 was_wall_L = false
 correct_corner = 3
-wall_slide_speed = 200.0
+wall_slide_speed = 0.0
 wall_jumpV_force = -550.0
+wall_contador = 2
 wall_jumpH_force = -650.0
 wall_jumpHL_force = 500.0
 metadata/_custom_type_script = "uid://cxgbg04oq4klp"
@@ -125,13 +126,13 @@ hit_from_inside = true
 modulate = Color(1, 0, 1, 1)
 position = Vector2(0, 30)
 rotation = -3.14159
-target_position = Vector2(14, 0)
+target_position = Vector2(15, 0)
 collision_mask = 7
 hit_from_inside = true
 
 [node name="Wall_ControllerRc" type="RayCast2D" parent="."]
 position = Vector2(0, -40.965)
-target_position = Vector2(14, 0)
+target_position = Vector2(15, 0)
 collision_mask = 7
 hit_from_inside = true
 
@@ -139,6 +140,6 @@ hit_from_inside = true
 modulate = Color(1, 0, 1, 1)
 position = Vector2(0, -40.965)
 rotation = -3.14159
-target_position = Vector2(14, 0)
+target_position = Vector2(15, 0)
 collision_mask = 7
 hit_from_inside = true

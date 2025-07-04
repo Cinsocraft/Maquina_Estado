@@ -22,8 +22,11 @@ func 	on_physics_process(delta):
 		elif !player.corner_left_control.is_colliding() and player.corner_right_control.is_colliding():
 			player.position.x -= controlled_node.movement_stats.correct_corner
 	#endregion
-	if player.is_on_wall():
-		state_machine.change_to(player.states.WallSlide)
+
+	if player.wall_controller_r.get_collider() and player.wall_controller_rc.get_collider():
+			state_machine.change_to(player.states.WallSlide)
+	elif player.wall_controller_l.get_collider() and player.wall_controller_lc.get_collider():
+			state_machine.change_to(player.states.WallSlide)
 	
 	handle_gravity(delta)
 	controlled_node.move_and_slide()

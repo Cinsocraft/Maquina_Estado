@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://doobhlt5nb1yt"]
+
+[ext_resource type="Script" uid="uid://dexq063fcolth" path="res://Scritps/new_script.gd" id="1_ap2gf"]
+[ext_resource type="Texture2D" uid="uid://cgcs1uqkgaf7m" path="res://kenney_scribble-platformer/PNG/Retina/effect_blastLarge.png" id="2_y7p5w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egwks"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_ap2gf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_egwks")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_y7p5w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WallJumpTimer" type="Timer" parent="."]
+one_shot = true

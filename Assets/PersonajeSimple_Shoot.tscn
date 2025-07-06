@@ -1,21 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://x5ycmkupdp2n"]
+[gd_scene load_steps=16 format=3 uid="uid://c8e62vxok360v"]
 
-[ext_resource type="Texture2D" uid="uid://0n56ntaimlqr" path="res://kenney_scribble-platformer/PNG/Default/character_roundYellow.png" id="1_nhi5a"]
-[ext_resource type="Script" uid="uid://bg0ludbwq8aum" path="res://Scritps/StateScript/Player.gd" id="1_wl586"]
-[ext_resource type="Script" uid="uid://w61e2uqdtq6e" path="res://Scritps/StateScript/state_machine.gd" id="2_6wppu"]
-[ext_resource type="Script" uid="uid://cxgbg04oq4klp" path="res://Scritps/character_movement_stats.gd" id="2_b1e43"]
-[ext_resource type="Script" uid="uid://cli6b1yhnihm5" path="res://Scritps/StateScript/Estados/idle_state.gd" id="3_gjn1t"]
-[ext_resource type="Script" uid="uid://dlp608y0mwlvr" path="res://Scritps/StateScript/Estados/move_state.gd" id="4_wl586"]
-[ext_resource type="Script" uid="uid://ba2cjrehf4fvc" path="res://Scritps/StateScript/Estados/jump_state.gd" id="7_5pq2n"]
-[ext_resource type="Script" uid="uid://bo87ouky3jfkh" path="res://Scritps/StateScript/Estados/fall_state.gd" id="8_j0yqh"]
-[ext_resource type="Script" uid="uid://dcomnvrmvd1gk" path="res://Scritps/StateScript/Estados/coyote_state.gd" id="9_sivoe"]
-[ext_resource type="Script" uid="uid://cb8e8avgvond0" path="res://Scritps/StateScript/Estados/buffer_state.gd" id="10_xsjsp"]
-[ext_resource type="Script" uid="uid://dkrgj174oc2sy" path="res://Scritps/StateScript/Estados/wall_jump_state.gd" id="12_mlthr"]
-[ext_resource type="Script" uid="uid://etm3cwipbqox" path="res://Scritps/StateScript/Estados/wall_slide_state.gd" id="12_o1f3h"]
-[ext_resource type="Script" uid="uid://dsu24jk2xvjev" path="res://Scritps/StateScript/Estados/shoot_idle_state.gd" id="13_mlthr"]
+[ext_resource type="Script" uid="uid://bg0ludbwq8aum" path="res://Scritps/StateScript/Player.gd" id="1_0tgkt"]
+[ext_resource type="Script" uid="uid://cxgbg04oq4klp" path="res://Scritps/character_movement_stats.gd" id="2_in17e"]
+[ext_resource type="Texture2D" uid="uid://0n56ntaimlqr" path="res://kenney_scribble-platformer/PNG/Default/character_roundYellow.png" id="3_gg1oa"]
+[ext_resource type="Script" uid="uid://w61e2uqdtq6e" path="res://Scritps/StateScript/state_machine.gd" id="4_x5e4g"]
+[ext_resource type="Script" uid="uid://cli6b1yhnihm5" path="res://Scritps/StateScript/Estados/idle_state.gd" id="5_s6se4"]
+[ext_resource type="Script" uid="uid://dlp608y0mwlvr" path="res://Scritps/StateScript/Estados/move_state.gd" id="6_abehq"]
+[ext_resource type="Script" uid="uid://ba2cjrehf4fvc" path="res://Scritps/StateScript/Estados/jump_state.gd" id="7_d1mg0"]
+[ext_resource type="Script" uid="uid://bo87ouky3jfkh" path="res://Scritps/StateScript/Estados/fall_state.gd" id="8_78bmn"]
+[ext_resource type="Script" uid="uid://dcomnvrmvd1gk" path="res://Scritps/StateScript/Estados/coyote_state.gd" id="9_7e4ss"]
+[ext_resource type="Script" uid="uid://cb8e8avgvond0" path="res://Scritps/StateScript/Estados/buffer_state.gd" id="10_2siam"]
+[ext_resource type="Script" uid="uid://etm3cwipbqox" path="res://Scritps/StateScript/Estados/wall_slide_state.gd" id="11_aw0j8"]
+[ext_resource type="Script" uid="uid://dkrgj174oc2sy" path="res://Scritps/StateScript/Estados/wall_jump_state.gd" id="12_lnye5"]
+[ext_resource type="Script" uid="uid://dsu24jk2xvjev" path="res://Scritps/StateScript/Estados/shoot_idle_state.gd" id="13_leh87"]
 
 [sub_resource type="Resource" id="Resource_5pq2n"]
-script = ExtResource("2_b1e43")
+script = ExtResource("2_in17e")
 input_direction = 0.0
 target_speed = 0.0
 move_speed = 500.0
@@ -45,14 +45,17 @@ height = 60.0
 collision_layer = 7
 collision_mask = 7
 safe_margin = 0.14
-script = ExtResource("1_wl586")
+script = ExtResource("1_0tgkt")
 movement_stats = SubResource("Resource_5pq2n")
 
 [node name="body" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="body"]
 texture_filter = 1
-texture = ExtResource("1_nhi5a")
+texture = ExtResource("3_gg1oa")
+
+[node name="Marker2D" type="Marker2D" parent="body"]
+position = Vector2(19, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_o1f3h")
@@ -60,35 +63,35 @@ shape = SubResource("CapsuleShape2D_o1f3h")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]
-script = ExtResource("2_6wppu")
+script = ExtResource("4_x5e4g")
 default_state = NodePath("Idle_State")
 
 [node name="Idle_State" type="Node" parent="StateMachine"]
-script = ExtResource("3_gjn1t")
+script = ExtResource("5_s6se4")
 
 [node name="Move_State" type="Node" parent="StateMachine"]
-script = ExtResource("4_wl586")
+script = ExtResource("6_abehq")
 
 [node name="Jump_State" type="Node" parent="StateMachine"]
-script = ExtResource("7_5pq2n")
+script = ExtResource("7_d1mg0")
 
 [node name="Fall_State" type="Node" parent="StateMachine"]
-script = ExtResource("8_j0yqh")
+script = ExtResource("8_78bmn")
 
 [node name="Coyote_State" type="Node" parent="StateMachine"]
-script = ExtResource("9_sivoe")
+script = ExtResource("9_7e4ss")
 
 [node name="Buffer_State" type="Node" parent="StateMachine"]
-script = ExtResource("10_xsjsp")
+script = ExtResource("10_2siam")
 
 [node name="WallSlide_State" type="Node" parent="StateMachine"]
-script = ExtResource("12_o1f3h")
+script = ExtResource("11_aw0j8")
 
 [node name="WallJump_State" type="Node" parent="StateMachine"]
-script = ExtResource("12_mlthr")
+script = ExtResource("12_lnye5")
 
 [node name="ShootIdle_State" type="Node" parent="StateMachine"]
-script = ExtResource("13_mlthr")
+script = ExtResource("13_leh87")
 
 [node name="Coyote Timer" type="Timer" parent="."]
 wait_time = 0.3
@@ -100,6 +103,8 @@ one_shot = true
 
 [node name="WallTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="."]
 
 [node name="Corner_Right_Control" type="RayCast2D" parent="."]
 position = Vector2(11, 0)

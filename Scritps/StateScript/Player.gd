@@ -5,12 +5,15 @@ extends CharacterBody2D
 
 var states:PlayerStateNames = PlayerStateNames.new()
 
+const BULLET = preload("res://Assets/bullet.tscn")
 
 @onready var coyote_timer: Timer = $"Coyote Timer"
 @onready var jumper_buffer: Timer = $"Jumper Buffer"
 @onready var wall_timer: Timer = $"WallTimer"
 
 @onready var body: Node2D = $body
+
+@onready var marker_2d: Marker2D = $body/Marker2D
 
 @onready var buffer_control: RayCast2D = $Buffer_Control
 @onready var coyote_control: RayCast2D = $Coyote_Control

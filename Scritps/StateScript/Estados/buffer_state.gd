@@ -1,8 +1,16 @@
 extends PlayerStateGravityBase
 
 func 	on_physics_process(delta):
-	player.velocity.x = \
-	Input.get_axis("left", "right") * player.movement_stats.move_speed
+	controlled_node.movement_stats.input_direction  = Input.get_axis("left", "right") * controlled_node.movement_stats.move_speed
+	controlled_node.movement_stats.target_speed = controlled_node.movement_stats.input_direction * controlled_node.movement_stats.move_speed
+	if controlled_node.movement_stats.input_direction != 0:
+		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,controlled_node.movement_stats.target_speed,controlled_node.movement_stats.acceleration_speed * delta)
+		if controlled_node.velocity.x >= controlled_node.movement_stats.move_speedTop:
+			controlled_node.velocity.x= controlled_node.movement_stats.move_speedTop
+		elif controlled_node.velocity.x <= -controlled_node.movement_stats.move_speedTop:
+			controlled_node.velocity.x= -controlled_node.movement_stats.move_speedTop
+	else:
+		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,0,controlled_node.movement_stats.decceleration_speed * delta)
 	if !player.jumper_buffer.is_stopped() and Input.is_action_pressed("jump"):
 		if controlled_node.is_on_floor():
 			controlled_node.velocity.y = controlled_node.movement_stats.jump_speed
@@ -11,16 +19,16 @@ func 	on_physics_process(delta):
 		player.jumper_buffer.start()
 		if controlled_node.velocity.y >= 0 and !Input.is_anything_pressed():
 			state_machine.change_to(player.states.Idle)
-		if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
+		elif Input.is_anything_pressed() and controlled_node.velocity.y >= 0:
 			state_machine.change_to(player.states.Move)
-		if player.jumper_buffer.is_stopped():
+		elif player.jumper_buffer.is_stopped():
 			state_machine.change_to(player.states.Fall)
 	#region Corner Correction
 	if !player.is_on_wall():
 		if player.corner_left_control.is_colliding() and not player.corner_right_control.is_colliding():
-			player.position.x += controlled_node.movement_stats.correct_corner
+			player.global_position.x += 10
 		elif !player.corner_left_control.is_colliding() and player.corner_right_control.is_colliding():
-			player.position.x -= controlled_node.movement_stats.correct_corner
+			player.global_position.x -= 10
 	#endregion
 
 	if player.wall_controller_r.get_collider() and player.wall_controller_rc.get_collider():

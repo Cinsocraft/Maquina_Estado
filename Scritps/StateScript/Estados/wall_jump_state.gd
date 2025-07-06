@@ -2,9 +2,16 @@ extends PlayerStateGravityBase
 
 
 func on_physics_process(delta):
-	player.velocity.x = \
-		 Input.get_axis("left", "right") * player.movement_stats.move_speed
-
+	controlled_node.movement_stats.input_direction  = Input.get_axis("left", "right") * controlled_node.movement_stats.move_speed
+	controlled_node.movement_stats.target_speed = controlled_node.movement_stats.input_direction * controlled_node.movement_stats.move_speed
+	if controlled_node.movement_stats.input_direction != 0:
+		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,controlled_node.movement_stats.target_speed,controlled_node.movement_stats.acceleration_speed * delta)
+		if controlled_node.velocity.x >= controlled_node.movement_stats.move_speedTop:
+			controlled_node.velocity.x= controlled_node.movement_stats.move_speedTop
+		elif controlled_node.velocity.x <= -controlled_node.movement_stats.move_speedTop:
+			controlled_node.velocity.x= -controlled_node.movement_stats.move_speedTop
+	else:
+		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,0,controlled_node.movement_stats.decceleration_speed * delta)
 	if player.movement_stats.jump_wall_actived and player.movement_stats.was_wall_R:
 			controlled_node.velocity.y = player.movement_stats.wall_jumpV_force
 			controlled_node.velocity.x = player.movement_stats.wall_jumpH_force

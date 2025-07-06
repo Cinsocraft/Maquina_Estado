@@ -5,9 +5,16 @@ extends PlayerStateGravityBase
 
 
 func 	on_physics_process(delta):
-	player.velocity.x = \
-	Input.get_axis("left", "right") * player.movement_stats.move_speed
-	
+	controlled_node.movement_stats.input_direction  = Input.get_axis("left", "right") * controlled_node.movement_stats.move_speed
+	controlled_node.movement_stats.target_speed = controlled_node.movement_stats.input_direction * controlled_node.movement_stats.move_speed
+	if controlled_node.movement_stats.input_direction != 0:
+		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,controlled_node.movement_stats.target_speed,controlled_node.movement_stats.acceleration_speed * delta)
+		if controlled_node.velocity.x >= controlled_node.movement_stats.move_speedTop:
+			controlled_node.velocity.x= controlled_node.movement_stats.move_speedTop
+		elif controlled_node.velocity.x <= -controlled_node.movement_stats.move_speedTop:
+			controlled_node.velocity.x= -controlled_node.movement_stats.move_speedTop
+	else:
+		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,0,controlled_node.movement_stats.decceleration_speed * delta)
 	# si esta en el suelo y esta parado sobre él, podemos darle impulso de salto
 	if !player.coyote_control.get_collider() and controlled_node.velocity.y >= 0: 
 		if player.movement_stats.coyote_time_actived:

@@ -16,13 +16,20 @@ func 	on_physics_process(delta):
 	
 	if controlled_node.velocity.y > 0 and !player.coyote_control.get_collider():
 		state_machine.change_to(player.states.Coyote)
-	print(controlled_node.velocity.x)
+	
 	handle_gravity(delta)
 	controlled_node.move_and_slide()
 	
 func on_input(_event):
 	if controlled_node.velocity.x == 0.0:
 		state_machine.change_to(player.states.Idle)
+	if Input.is_action_just_pressed("Shoot") and controlled_node.velocity.x == 0.0:
+		controlled_node.movement_stats.can_shoot = true
+		state_machine.change_to(player.states.ShootIdle)
+	if Input.get_action_strength("left") or Input.get_action_strength("right"):
+		if Input.is_action_just_pressed("Shoot"):
+			controlled_node.movement_stats.can_shoot = true
+			state_machine.change_to(player.states.ShootMove)
 	if Input.is_action_just_pressed("jump"):
 			state_machine.change_to(player.states.Jump)
 ###

@@ -12,8 +12,8 @@ const BULLET = preload("res://Assets/bullet.tscn")
 @onready var wall_timer: Timer = $"WallTimer"
 
 @onready var body: Node2D = $body
+@onready var shoot_point: Marker2D = $body/ShootPoint
 
-@onready var marker_2d: Marker2D = $body/Marker2D
 
 @onready var buffer_control: RayCast2D = $Buffer_Control
 @onready var coyote_control: RayCast2D = $Coyote_Control
@@ -26,6 +26,9 @@ const BULLET = preload("res://Assets/bullet.tscn")
 @onready var corner_right_control: RayCast2D = $Corner_Right_Control
 @onready var corner_left_control: RayCast2D = $Corner_Left_Control
 ###
+
+const bullet= preload("res://Assets/bullet.tscn")
+
 func set_facing_direction(x:float) -> void:
 	if abs(x) > 0:
 		body.scale.x = -1 if (x < 0) else 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c8e62vxok360v"]
+[gd_scene load_steps=18 format=3 uid="uid://c8e62vxok360v"]
 
 [ext_resource type="Script" uid="uid://bg0ludbwq8aum" path="res://Scritps/StateScript/Player.gd" id="1_0tgkt"]
 [ext_resource type="Script" uid="uid://cxgbg04oq4klp" path="res://Scritps/character_movement_stats.gd" id="2_in17e"]
@@ -15,8 +15,6 @@
 [ext_resource type="Script" uid="uid://dkrgj174oc2sy" path="res://Scritps/StateScript/Estados/wall_jump_state.gd" id="12_lnye5"]
 [ext_resource type="Script" uid="uid://dsu24jk2xvjev" path="res://Scritps/StateScript/Estados/shoot_idle_state.gd" id="13_leh87"]
 [ext_resource type="Script" uid="uid://btoh2y12ilnt0" path="res://Scritps/StateScript/Estados/shoot_move_state.gd" id="15_gg1oa"]
-[ext_resource type="Script" uid="uid://cwnjdf14ouwl5" path="res://Assets/shoot_fall_state.gd" id="16_x5e4g"]
-[ext_resource type="Script" uid="uid://cdun281xaf1ld" path="res://Assets/shoot_jump_state.gd" id="17_s6se4"]
 
 [sub_resource type="Resource" id="Resource_5pq2n"]
 script = ExtResource("2_in17e")
@@ -48,6 +46,8 @@ radius = 11.0
 height = 60.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 7
+collision_mask = 7
 safe_margin = 0.14
 script = ExtResource("1_0tgkt")
 movement_stats = SubResource("Resource_5pq2n")
@@ -103,12 +103,6 @@ script = ExtResource("13_leh87")
 
 [node name="ShootMove_State" type="Node" parent="StateMachine"]
 script = ExtResource("15_gg1oa")
-
-[node name="ShootFall_State" type="Node" parent="StateMachine"]
-script = ExtResource("16_x5e4g")
-
-[node name="ShootJump_State" type="Node" parent="StateMachine"]
-script = ExtResource("17_s6se4")
 
 [node name="Coyote Timer" type="Timer" parent="."]
 wait_time = 0.3

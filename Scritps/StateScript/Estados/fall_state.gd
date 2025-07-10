@@ -23,6 +23,5 @@ func on_physics_process(delta):
 			state_machine.change_to(player.states.WallSlide)
 	elif player.wall_controller_l.get_collider() and player.wall_controller_lc.get_collider():
 			state_machine.change_to(player.states.WallSlide)
-	print(controlled_node.velocity.x)
 	handle_gravity(delta)
 	controlled_node.move_and_slide()

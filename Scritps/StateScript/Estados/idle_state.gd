@@ -28,12 +28,16 @@ func 	on_physics_process(delta):
 	controlled_node.move_and_slide()
 
 func on_input(_event):
-	if Input.get_action_strength("left") or Input.get_action_strength("right"):
-		state_machine.change_to(player.states.Move)
-	elif Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump"):
 			state_machine.change_to(player.states.Jump)
-	elif Input.is_action_just_pressed("Shoot"):
+	if Input.is_action_just_pressed("Shoot") and controlled_node.velocity.x == 0.0:
 		controlled_node.movement_stats.can_shoot = true
 		state_machine.change_to(player.states.ShootIdle)
+	if Input.get_action_strength("left") or Input.get_action_strength("right"):
+		if Input.is_action_just_pressed("Shoot"):
+			controlled_node.movement_stats.can_shoot = true
+			state_machine.change_to(player.states.ShootMove)
+		state_machine.change_to(player.states.Move)
+	
 ###
 ###

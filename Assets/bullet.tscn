@@ -12,7 +12,7 @@ texture = ExtResource("1_jbvqc")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(10, 0)
-collision_mask = 7
+collision_mask = 4
 hit_from_inside = true
 
 [node name="DistanceOffTimer" type="Timer" parent="."]

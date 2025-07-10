@@ -11,6 +11,9 @@ const Corner:String = "Corner_State"
 const WallSlide:String = "WallSlide_State"
 const WallJump:String = "WallJump_State"
 const ShootIdle:String ="ShootIdle_State"
+const ShootMove:String ="ShootMove_State"
+const ShootFall:String ="ShootFall_State"
+const ShootJump:String ="ShootJump_State"
 
 
 #Estados de combate de un boss? creo

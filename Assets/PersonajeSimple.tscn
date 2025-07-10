@@ -34,6 +34,8 @@ wall_jumpH_force = -500.0
 wall_jumpHL_force = 500.0
 time_between_shoot = 0.25
 can_shoot = false
+left_shoot = false
+rotation_point_shoot = 180.0
 bulletDirection = Vector2(1, 0)
 metadata/_custom_type_script = "uid://cxgbg04oq4klp"
 

@@ -12,10 +12,10 @@ func 	on_physics_process(delta):
 	else:
 		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,0,controlled_node.movement_stats.decceleration_speed * delta)
 	if !player.jumper_buffer.is_stopped() and Input.is_action_pressed("jump"):
-		if controlled_node.is_on_floor():
+		if controlled_node.buffer_control.is_colliding():
 			controlled_node.velocity.y = controlled_node.movement_stats.jump_speed
 			state_machine.change_to(player.states.Fall)
-	elif controlled_node.is_on_floor() or player.jumper_buffer.is_stopped():
+	elif controlled_node.buffer_control.is_colliding() or player.jumper_buffer.is_stopped():
 		player.jumper_buffer.start()
 		if controlled_node.velocity.y >= 0 and !Input.is_anything_pressed():
 			state_machine.change_to(player.states.Idle)
@@ -31,9 +31,9 @@ func 	on_physics_process(delta):
 			player.global_position.x -= 10
 	#endregion
 
-	if player.wall_controller_r.get_collider() and player.wall_controller_rc.get_collider():
+	if player.wall_controller_r.is_colliding() and player.wall_controller_rc.is_colliding():
 			state_machine.change_to(player.states.WallSlide)
-	elif player.wall_controller_l.get_collider() and player.wall_controller_lc.get_collider():
+	elif player.wall_controller_l.is_colliding() and player.wall_controller_lc.is_colliding():
 			state_machine.change_to(player.states.WallSlide)
 	
 	handle_gravity(delta)

@@ -23,6 +23,8 @@ class_name CharacterMovementStats
 
 @export var coyote_time_actived = false
 
+@export var was_on_ground: bool = false
+
 @export var jump_wall_actived = false
 
 @export var was_wall_R = false

@@ -22,11 +22,13 @@ func 	on_physics_process(delta):
 		controlled_node.velocity.y = controlled_node.movement_stats.jump_speed
 	elif controlled_node.velocity.y > 0: 
 		state_machine.change_to(player.states.Fall)
+	elif Input.is_action_pressed("Shoot"):
+		state_machine.change_to(player.states.ShootJump)
 	#endregion
 	#region Salto pared
-	if player.wall_controller_r.get_collider() and player.wall_controller_rc.get_collider():
+	if player.wall_controller_r.is_colliding() and player.wall_controller_rc.is_colliding():
 			state_machine.change_to(player.states.WallSlide)
-	elif player.wall_controller_l.get_collider() and player.wall_controller_lc.get_collider():
+	elif player.wall_controller_l.is_colliding() and player.wall_controller_lc.is_colliding():
 			state_machine.change_to(player.states.WallSlide)
 	#endregion
 	#region Esquina de Correción
@@ -38,3 +40,8 @@ func 	on_physics_process(delta):
 	#endregion
 	handle_gravity(delta)
 	controlled_node.move_and_slide()
+
+func on_input(_event):
+	if Input.is_action_pressed("Shoot"):
+		controlled_node.movement_stats.can_shoot = true
+		state_machine.change_to(player.states.ShootJump)

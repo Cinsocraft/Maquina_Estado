@@ -16,7 +16,11 @@ func 	on_physics_process(delta):
 	#endregion
 	#region Cambio de estado
 	
-	
+	if controlled_node.velocity.y >= 0:
+		print("Coyote Time iniciado →", controlled_node.coyote_timer.time_left, "s")
+		controlled_node.coyote_timer.start()
+		if !player.coyote_control_l.is_colliding() or !player.coyote_control_r.is_colliding():
+				state_machine.change_to(player.states.Coyote)
 	
 	if player.velocity.x < 0 and player.is_on_floor(): 
 		state_machine.change_to(player.states.Move)

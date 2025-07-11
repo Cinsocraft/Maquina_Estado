@@ -13,15 +13,19 @@ func on_physics_process(delta):
 	else:
 		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,0,controlled_node.movement_stats.decceleration_speed * delta)
 	if !player.jumper_buffer.is_stopped():
-		state_machine.change_to(player.states.Buffer)
+		if controlled_node.buffer_control.is_colliding():
+			state_machine.change_to(player.states.Buffer)
 	if player.velocity.y >= 0 and player.is_on_floor(): 
 			state_machine.change_to(player.states.Idle)
 	if Input.get_axis("left", "right") and player.is_on_floor(): 
 			state_machine.change_to(player.states.Move)
+	if Input.is_action_pressed("Shoot"):
+		controlled_node.movement_stats.can_shoot = true
+		state_machine.change_to(player.states.ShootFall)
 	
-	if player.wall_controller_r.get_collider() and player.wall_controller_rc.get_collider():
+	if player.wall_controller_r.is_colliding() and player.wall_controller_rc.is_colliding():
 			state_machine.change_to(player.states.WallSlide)
-	elif player.wall_controller_l.get_collider() and player.wall_controller_lc.get_collider():
+	elif player.wall_controller_l.is_colliding() and player.wall_controller_lc.is_colliding():
 			state_machine.change_to(player.states.WallSlide)
 	handle_gravity(delta)
 	controlled_node.move_and_slide()

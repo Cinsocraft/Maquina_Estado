@@ -36,8 +36,10 @@ func 	on_physics_process(delta):
 	#endregion
 	#region Cambio de estado
 	
-
-	
+	if controlled_node.velocity.y >= 0 and !player.coyote_control.is_colliding():
+		if controlled_node.coyote_timer.is_stopped():
+			state_machine.change_to(player.states.Fall)
+		state_machine.change_to(player.states.Coyote)
 	
 	if player.velocity.x < 0 and player.is_on_floor(): 
 		state_machine.change_to(player.states.Move)

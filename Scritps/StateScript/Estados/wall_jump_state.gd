@@ -34,8 +34,12 @@ func on_physics_process(delta):
 	if Input.get_axis("left", "right") and player.is_on_floor(): 
 		
 		state_machine.change_to(player.states.Move)
+		
 	if controlled_node.velocity.y > 0:
-		state_machine.change_to(player.states.Fall)
+		if Input.is_action_pressed("Shoot"):
+			state_machine.change_to(player.states.ShootJump)
+		else:
+			state_machine.change_to(player.states.Fall)
 	
 	handle_gravity(delta)
 	controlled_node.move_and_slide()

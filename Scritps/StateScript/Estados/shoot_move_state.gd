@@ -29,7 +29,7 @@ func 	on_physics_process(delta):
 	else:
 		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,0,controlled_node.movement_stats.decceleration_speed * delta)
 	
-	if controlled_node.velocity.y > 0 and !player.coyote_control.get_collider():
+	if controlled_node.velocity.y > 0 and !player.coyote_control.is_colliding():
 		state_machine.change_to(player.states.Coyote)
 		
 			

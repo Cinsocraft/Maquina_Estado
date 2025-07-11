@@ -11,8 +11,7 @@ var speed: float = 600.0
 
 func _physics_process(delta: float) -> void:
 	global_position += direction * speed * delta
-	if ray_cast_2d.is_colliding():
-		queue_free()
+
 	
 
 func _on_distance_timeout_timeout() -> void:

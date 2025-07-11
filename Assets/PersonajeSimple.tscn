@@ -24,6 +24,7 @@ acceleration_speed = 5000.0
 decceleration_speed = 5000.0
 jump_speed = -550.0
 coyote_time_actived = false
+was_on_ground = false
 jump_wall_actived = false
 was_wall_R = false
 was_wall_L = false
@@ -130,7 +131,7 @@ hit_from_inside = true
 
 [node name="Wall_ControllerR" type="RayCast2D" parent="."]
 position = Vector2(0, 30)
-target_position = Vector2(15, 0)
+target_position = Vector2(14, 0)
 collision_mask = 7
 hit_from_inside = true
 

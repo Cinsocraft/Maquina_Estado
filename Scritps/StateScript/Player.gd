@@ -16,7 +16,6 @@ const BULLET = preload("res://Assets/bullet.tscn")
 
 
 @onready var buffer_control: RayCast2D = $Buffer_Control
-@onready var coyote_control: RayCast2D = $Coyote_Control
 ###
 @onready var wall_controller_r: RayCast2D = $Wall_ControllerR
 @onready var wall_controller_l: RayCast2D = $Wall_ControllerL
@@ -26,6 +25,11 @@ const BULLET = preload("res://Assets/bullet.tscn")
 @onready var corner_right_control: RayCast2D = $Corner_Right_Control
 @onready var corner_left_control: RayCast2D = $Corner_Left_Control
 ###
+
+@onready var coyote_control_l: RayCast2D = $"Coyote_Control L"
+@onready var coyote_control_r: RayCast2D = $"Coyote_Control R"
+
+
 
 const bullet= preload("res://Assets/bullet.tscn")
 

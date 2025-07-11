@@ -21,6 +21,7 @@ func on_process(_delta):
 ###Meter que se imulse lo suficiente adaptandose a la velocidad del personaje
 
 func 	on_physics_process(delta):
+	var is_on_ground = player.coyote_control_l.is_colliding() and player.coyote_control_r.is_colliding()
 	#region Movimiento
 	controlled_node.movement_stats.input_direction  = Input.get_axis("left", "right") * controlled_node.movement_stats.move_speed
 	controlled_node.movement_stats.target_speed = controlled_node.movement_stats.input_direction * controlled_node.movement_stats.move_speed
@@ -36,7 +37,7 @@ func 	on_physics_process(delta):
 	#endregion
 	#region Cambio de estado
 	
-	if controlled_node.velocity.y >= 0 and !player.coyote_control.is_colliding():
+	if controlled_node.velocity.y >= 0 and !is_on_ground:
 		if controlled_node.coyote_timer.is_stopped():
 			state_machine.change_to(player.states.Fall)
 		state_machine.change_to(player.states.Coyote)

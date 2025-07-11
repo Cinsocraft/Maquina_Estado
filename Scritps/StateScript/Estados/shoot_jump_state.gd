@@ -36,8 +36,6 @@ func 	on_physics_process(delta):
 	#region Salto
 	if controlled_node.is_on_floor() and controlled_node.velocity.y >= 0: 
 		controlled_node.velocity.y = controlled_node.movement_stats.jump_speed
-		if Input.is_action_just_pressed("Shoot"):
-			state_machine.change_to(player.states.ShootJump)
 	elif controlled_node.velocity.y > 0: 
 		if Input.is_action_just_pressed("Shoot"):
 			state_machine.change_to(player.states.ShootFall)
@@ -62,5 +60,5 @@ func 	on_physics_process(delta):
 
 func on_input(_event):
 	if Input.is_action_pressed("Shoot"):
-		
+		controlled_node.movement_stats.can_shoot = true
 		state_machine.change_to(player.states.ShootJump)

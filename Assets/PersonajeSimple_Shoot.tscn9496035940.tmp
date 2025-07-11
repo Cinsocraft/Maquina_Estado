@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c8e62vxok360v"]
+[gd_scene load_steps=21 format=3 uid="uid://c8e62vxok360v"]
 
 [ext_resource type="Script" uid="uid://bg0ludbwq8aum" path="res://Scritps/StateScript/Player.gd" id="1_0tgkt"]
 [ext_resource type="Script" uid="uid://cxgbg04oq4klp" path="res://Scritps/character_movement_stats.gd" id="2_in17e"]
@@ -18,7 +18,6 @@
 [ext_resource type="Script" uid="uid://btoh2y12ilnt0" path="res://Scritps/StateScript/Estados/shoot_move_state.gd" id="15_gg1oa"]
 [ext_resource type="Script" uid="uid://cwnjdf14ouwl5" path="res://Scritps/StateScript/Estados/shoot_fall_state.gd" id="16_x5e4g"]
 [ext_resource type="Script" uid="uid://cdun281xaf1ld" path="res://Scritps/StateScript/Estados/shoot_jump_state.gd" id="17_s6se4"]
-[ext_resource type="Script" uid="uid://jokrbc6mowin" path="res://Assets/shoot_buffer_state.gd" id="19_d1mg0"]
 
 [sub_resource type="Resource" id="Resource_5pq2n"]
 script = ExtResource("2_in17e")
@@ -113,9 +112,6 @@ script = ExtResource("16_x5e4g")
 
 [node name="ShootJump_State" type="Node" parent="StateMachine"]
 script = ExtResource("17_s6se4")
-
-[node name="ShootBuffer_State" type="Node" parent="StateMachine"]
-script = ExtResource("19_d1mg0")
 
 [node name="Coyote Timer" type="Timer" parent="."]
 wait_time = 0.3

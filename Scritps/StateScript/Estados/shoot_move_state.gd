@@ -16,7 +16,9 @@ func on_process(delta):
 			bulletnode.rotation_degrees = 180
 
 func 	on_physics_process(delta):
-	
+	#
+	var is_on_ground = player.coyote_control_l.is_colliding() and player.coyote_control_r.is_colliding()
+	#
 	controlled_node.movement_stats.input_direction  = Input.get_axis("left", "right") * controlled_node.movement_stats.move_speed
 	controlled_node.movement_stats.target_speed = controlled_node.movement_stats.input_direction * controlled_node.movement_stats.move_speed
 	
@@ -29,7 +31,7 @@ func 	on_physics_process(delta):
 	else:
 		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,0,controlled_node.movement_stats.decceleration_speed * delta)
 	
-	if controlled_node.velocity.y > 0 and !player.coyote_control.is_colliding():
+	if controlled_node.velocity.y > 0 and !is_on_ground:
 		state_machine.change_to(player.states.Coyote)
 		
 			

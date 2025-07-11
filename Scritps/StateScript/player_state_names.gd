@@ -14,6 +14,7 @@ const ShootIdle:String ="ShootIdle_State"
 const ShootMove:String ="ShootMove_State"
 const ShootFall:String ="ShootFall_State"
 const ShootJump:String ="ShootJump_State"
+const ShootBuffer:String ="ShootBuffer_State"
 
 
 #Estados de combate de un boss? creo

@@ -14,11 +14,9 @@ func 	on_physics_process(delta):
 	else:
 		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,0,controlled_node.movement_stats.decceleration_speed * delta)
 	
-	if controlled_node.velocity.y >= 0:
-		print("Coyote Time iniciado →", controlled_node.coyote_timer.time_left, "s")
+	if !player.coyote_control_l.is_colliding() or !player.coyote_control_r.is_colliding():
 		controlled_node.coyote_timer.start()
-		if !player.coyote_control_l.is_colliding() or !player.coyote_control_r.is_colliding():
-			state_machine.change_to(player.states.Coyote)
+		state_machine.change_to(player.states.Coyote)
 	
 	if controlled_node.velocity.y > 0:
 		state_machine.change_to(player.states.Fall)

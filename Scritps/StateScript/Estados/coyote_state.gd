@@ -55,9 +55,7 @@ func on_input(_event):
 	var is_on_ground = player.coyote_control_l.is_colliding() and player.coyote_control_r.is_colliding()
 	if Input.is_action_just_pressed("jump"):
 		if player.movement_stats.coyote_time_actived:
-				print("Linea 64")
 				controlled_node.velocity.y = controlled_node.movement_stats.jump_speed
 				player.movement_stats.coyote_time_actived=false
-				print("Coyote Time iniciado →", controlled_node.coyote_timer.time_left, "s")
 				controlled_node.coyote_timer.stop()
 				state_machine.change_to(player.states.Fall)

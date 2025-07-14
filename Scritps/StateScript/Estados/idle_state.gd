@@ -31,12 +31,15 @@ func 	on_physics_process(delta):
 
 func on_input(_event):
 	if Input.is_action_just_pressed("jump"):
+		if Input.is_action_pressed("Shoot") and player.power_shoot_actived==true:
+			state_machine.change_to(player.states.ShootJump)
+		else:
 			state_machine.change_to(player.states.Jump)
-	if Input.is_action_just_pressed("Shoot") and controlled_node.velocity.x == 0.0:
+	if Input.is_action_just_pressed("Shoot") and controlled_node.velocity.x == 0.0 and player.power_shoot_actived==true:
 		controlled_node.movement_stats.can_shoot = true
 		state_machine.change_to(player.states.ShootIdle)
 	if Input.get_action_strength("left") or Input.get_action_strength("right"):
-		if Input.is_action_just_pressed("Shoot"):
+		if Input.is_action_just_pressed("Shoot") and player.power_shoot_actived==true:
 			controlled_node.movement_stats.can_shoot = true
 			state_machine.change_to(player.states.ShootMove)
 		state_machine.change_to(player.states.Move)

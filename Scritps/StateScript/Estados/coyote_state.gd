@@ -52,7 +52,6 @@ func 	on_physics_process(delta):
 
 func on_input(_event):
 	##Input Coyote
-	var is_on_ground = player.coyote_control_l.is_colliding() and player.coyote_control_r.is_colliding()
 	if Input.is_action_just_pressed("jump"):
 		if player.movement_stats.coyote_time_actived:
 				controlled_node.velocity.y = controlled_node.movement_stats.jump_speed

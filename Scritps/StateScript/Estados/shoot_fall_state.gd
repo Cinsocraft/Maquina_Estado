@@ -10,8 +10,6 @@ func on_process(_delta):
 			var bulletnode=player.bullet.instantiate() as Node2D
 			get_parent().add_child(bulletnode)
 			bulletnode.global_position = player.shoot_point.global_position
-			
-			var bullet_direction: Vector2
 			if player.body.scale.x < 0:
 				player.shoot_point.rotation_degrees = 180
 			if player.body.scale.x > 0:
@@ -34,8 +32,11 @@ func on_physics_process(delta):
 			controlled_node.velocity.x= -controlled_node.movement_stats.move_speedTop
 	else:
 		controlled_node.velocity.x = move_toward(controlled_node.velocity.x,0,controlled_node.movement_stats.decceleration_speed * delta)
-	if !player.jumper_buffer.is_stopped():
-		state_machine.change_to(player.states.ShootBuffer)
+	if !player.jumper_buffer.is_stopped() and player.buffer_control.is_colliding():
+		if Input.is_action_pressed("Shoot"):
+			state_machine.change_to(player.states.ShootBuffer)
+		else:
+			state_machine.change_to(player.states.Buffer)
 	if player.velocity.y >= 0 and player.is_on_floor(): 
 			state_machine.change_to(player.states.Idle)
 	if Input.get_axis("left", "right") and player.is_on_floor(): 

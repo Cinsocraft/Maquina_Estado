@@ -5,7 +5,6 @@ func on_process(delta):
 		controlled_node.movement_stats.can_shoot=false
 		var bulletnode=player.bullet.instantiate() as Node2D
 		bulletnode.global_position = player.shoot_point.global_position
-		var bullet_direction: Vector2
 		get_parent().add_child(bulletnode)
 		
 		if player.body.scale.x > 0:
@@ -37,8 +36,8 @@ func 	on_physics_process(delta):
 	if controlled_node.is_on_floor() and controlled_node.velocity.y >= 0: 
 		controlled_node.velocity.y = controlled_node.movement_stats.jump_speed
 	elif controlled_node.velocity.y > 0: 
-		if Input.is_action_just_pressed("Shoot"):
 			state_machine.change_to(player.states.ShootFall)
+		
 		
 	#endregion
 	#region Salto pared

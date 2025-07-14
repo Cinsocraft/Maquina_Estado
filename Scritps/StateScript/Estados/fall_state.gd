@@ -19,7 +19,7 @@ func on_physics_process(delta):
 			state_machine.change_to(player.states.Idle)
 	if Input.get_axis("left", "right") and player.is_on_floor(): 
 			state_machine.change_to(player.states.Move)
-	if Input.is_action_pressed("Shoot"):
+	if Input.is_action_pressed("Shoot") and player.power_shoot_actived==true:
 		controlled_node.movement_stats.can_shoot = true
 		state_machine.change_to(player.states.ShootFall)
 	

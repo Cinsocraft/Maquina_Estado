@@ -58,6 +58,9 @@ func on_input(_event):
 			state_machine.change_to(player.states.ShootMove)
 		state_machine.change_to(player.states.Move)
 	elif Input.is_action_just_pressed("jump"):
+		if Input.is_action_pressed("Shoot"):
+			state_machine.change_to(player.states.ShootJump)
+		else:
 			state_machine.change_to(player.states.Jump)
 	if !Input.is_action_just_pressed("Shoot"):
 		state_machine.change_to(player.states.Idle)

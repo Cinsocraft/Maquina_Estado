@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw1fgqstspt34"]
+
+[ext_resource type="Texture2D" uid="uid://b3ynarf0h5ari" path="res://kenney_scribble-platformer/PNG/Retina/effect_shotLarge.png" id="1_b4hbl"]
+[ext_resource type="Script" uid="uid://cm3dhkklwgmoe" path="res://Scritps/fall_plataform.gd" id="2_c88c5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c88c5"]
+size = Vector2(123, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4hbl"]
+size = Vector2(123, 33.07)
+
+[node name="FallenPlataform" type="Sprite2D"]
+texture = ExtResource("1_b4hbl")
+script = ExtResource("2_c88c5")
+
+[node name="ReactiverTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="FallenTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_c88c5")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.499998, -19.465)
+shape = SubResource("RectangleShape2D_b4hbl")
+
+[connection signal="timeout" from="ReactiverTimer" to="." method="_on_reactiver_timer_timeout"]
+[connection signal="timeout" from="FallenTimer" to="." method="_on_fallen_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

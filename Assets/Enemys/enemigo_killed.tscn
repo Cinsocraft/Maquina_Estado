@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj7eya60oq0ct"]
+
+[ext_resource type="Script" uid="uid://s7cj3d2a8e14" path="res://Scritps/enemigo_killed.gd" id="1_cbkbc"]
+[ext_resource type="Texture2D" uid="uid://ddxnb2my0hibq" path="res://kenney_scribble-platformer/PNG/Retina/tile_cog.png" id="1_u2ps3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbkbc"]
+size = Vector2(80, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3rrf"]
+size = Vector2(100, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1vb0"]
+size = Vector2(90, 91)
+
+[node name="EnemyDie" type="CharacterBody2D"]
+script = ExtResource("1_cbkbc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_u2ps3")
+
+[node name="StompDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_cbkbc")
+debug_color = Color(0.931878, 2.43542e-05, 0.651004, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 41)
+shape = SubResource("RectangleShape2D_l3rrf")
+debug_color = Color(0, 0.628669, 0.490132, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_g1vb0")
+
+[node name="TimerDead" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="TimerDead" to="." method="_on_timer_timeout"]

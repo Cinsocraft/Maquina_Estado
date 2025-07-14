@@ -5,7 +5,8 @@ extends CharacterBody2D
 
 var states:PlayerStateNames = PlayerStateNames.new()
 
-const BULLET = preload("res://Assets/bullet.tscn")
+
+const bullet = preload("res://Assets/Character/bullet.tscn")
 
 @onready var coyote_timer: Timer = $"Coyote Timer"
 @onready var jumper_buffer: Timer = $"Jumper Buffer"
@@ -13,6 +14,7 @@ const BULLET = preload("res://Assets/bullet.tscn")
 
 @onready var body: Node2D = $body
 @onready var shoot_point: Marker2D = $body/ShootPoint
+var power_shoot_actived:bool=false
 
 
 @onready var buffer_control: RayCast2D = $Buffer_Control
@@ -25,13 +27,12 @@ const BULLET = preload("res://Assets/bullet.tscn")
 @onready var corner_right_control: RayCast2D = $Corner_Right_Control
 @onready var corner_left_control: RayCast2D = $Corner_Left_Control
 ###
-
+@onready var shoot_cool_down: Timer = $ShootCoolDown
+	
 @onready var coyote_control_l: RayCast2D = $"Coyote_Control L"
 @onready var coyote_control_r: RayCast2D = $"Coyote_Control R"
 
 
-
-const bullet= preload("res://Assets/bullet.tscn")
 
 func set_facing_direction(x:float) -> void:
 	if abs(x) > 0:
@@ -42,3 +43,7 @@ func is_facing_right() -> bool:
 	
 func _process(_delta):
 	set_facing_direction(velocity.x)
+	
+func unlock_shoot() -> void:
+	power_shoot_actived = true
+	print(power_shoot_actived)

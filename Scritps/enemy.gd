@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var player_node:CharacterBody2D=get_parent().get_node("Player")
 
 var speed : float = 35.0
+@onready var dead_timer: Timer = $DEADTimer
 
 var gravity = 15
 
@@ -34,4 +35,8 @@ func _wait_dir_change(desired_dir:int):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == player_node:
-		get_tree().reload_current_scene()
+		dead_timer.start()
+
+
+func _on_dead_timer_timeout() -> void:
+	get_tree().reload_current_scene()

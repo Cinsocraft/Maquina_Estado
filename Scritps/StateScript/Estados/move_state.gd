@@ -28,12 +28,11 @@ func on_input(_event):
 	if Input.is_anything_pressed():
 		if controlled_node.velocity.x == 0.0:
 			state_machine.change_to(player.states.Idle)
-	if Input.is_action_just_pressed("Shoot"):
-		if controlled_node.velocity.x == 0.0:
-			controlled_node.movement_stats.can_shoot = true
+	if Input.is_action_just_pressed("Shoot") and controlled_node.velocity.x == 0.0 and player.power_shoot_actived==true:
+		controlled_node.movement_stats.can_shoot = true
 		state_machine.change_to(player.states.ShootIdle)
 	if Input.get_action_strength("left") or Input.get_action_strength("right"):
-		if Input.is_action_just_pressed("Shoot"):
+		if Input.is_action_just_pressed("Shoot") and player.power_shoot_actived==true:
 			controlled_node.movement_stats.can_shoot = true
 			state_machine.change_to(player.states.ShootMove)
 	if Input.is_action_just_pressed("jump"):

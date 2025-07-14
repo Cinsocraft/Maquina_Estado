@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Maquina de Estado"
-run/main_scene="uid://yrweu43q4v8b"
+run/main_scene="uid://h30qm1xkaf4a"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

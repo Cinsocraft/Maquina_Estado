@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwnw4pn63of8g"]
+
+[ext_resource type="Texture2D" uid="uid://b3ynarf0h5ari" path="res://kenney_scribble-platformer/PNG/Retina/effect_shotLarge.png" id="1_drsvk"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0xs82"]
+a = Vector2(-60, 0)
+b = Vector2(60, 0)
+
+[node name="Plataforma One Way" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_drsvk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_0xs82")
+one_way_collision = true

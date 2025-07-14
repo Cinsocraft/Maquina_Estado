@@ -53,8 +53,6 @@ class_name CharacterMovementStats
 
 @export var can_shoot: bool = false
 
-@export var left_shoot :bool
-
 @export var rotation_point_shoot=180.0
 
 @export var bulletDirection = Vector2(1,0)

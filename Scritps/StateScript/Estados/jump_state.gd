@@ -22,7 +22,7 @@ func 	on_physics_process(delta):
 		controlled_node.velocity.y = controlled_node.movement_stats.jump_speed
 	elif controlled_node.velocity.y > 0: 
 		state_machine.change_to(player.states.Fall)
-	elif Input.is_action_pressed("Shoot"):
+	elif Input.is_action_pressed("Shoot") and player.power_shoot_actived==true:
 		state_machine.change_to(player.states.ShootJump)
 	#endregion
 	#region Salto pared
@@ -40,8 +40,3 @@ func 	on_physics_process(delta):
 	#endregion
 	handle_gravity(delta)
 	controlled_node.move_and_slide()
-
-func on_input(_event):
-	if Input.is_action_pressed("Shoot"):
-		controlled_node.movement_stats.can_shoot = true
-		state_machine.change_to(player.states.ShootJump)

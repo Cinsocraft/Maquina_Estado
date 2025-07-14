@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://klwa5nxufei0"]
+
+[ext_resource type="Script" uid="uid://0hxjc6r58id8" path="res://Scritps/enemy.gd" id="1_xby7n"]
+[ext_resource type="Texture2D" uid="uid://b7ahrrob4xrri" path="res://kenney_scribble-platformer/PNG/Retina/tile_spike.png" id="2_cix0g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xby7n"]
+size = Vector2(26, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cix0g"]
+radius = 3.0
+height = 68.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kv35"]
+size = Vector2(70, 60.325)
+
+[node name="Enemy" type="CharacterBody2D"]
+visible = false
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_xby7n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_cix0g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 45)
+scale = Vector2(2.5, 0.5)
+shape = SubResource("RectangleShape2D_xby7n")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -34)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cix0g")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4kv35")
+
+[node name="LeftRay" type="RayCast2D" parent="."]
+position = Vector2(-55, 50)
+target_position = Vector2(0, 5)
+hit_from_inside = true
+
+[node name="LeftRayWall" type="RayCast2D" parent="."]
+position = Vector2(-50, 0)
+rotation = 1.5708
+target_position = Vector2(0, 5)
+
+[node name="RightRayWall" type="RayCast2D" parent="."]
+position = Vector2(50, 0)
+rotation = -1.5708
+target_position = Vector2(0, 5)
+
+[node name="RightRay" type="RayCast2D" parent="."]
+position = Vector2(55, 50)
+target_position = Vector2(0, 5)
+hit_from_inside = true
+
+[node name="DEADTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="DEADTimer" to="." method="_on_dead_timer_timeout"]
